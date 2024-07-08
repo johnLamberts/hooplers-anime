@@ -15,4 +15,17 @@ async function getRecentAnimes() {
   }
 }
 
-export { getRecentAnimes };
+async function getTopAiringAnimes() {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_HOOPLERS_ANIME_API}anime/gogoanime/top-airing`
+    );
+
+    return response;
+  } catch (err) {
+    if (err instanceof Error || err instanceof AxiosError)
+      throw new Error(err.message);
+  }
+}
+
+export { getRecentAnimes, getTopAiringAnimes };
